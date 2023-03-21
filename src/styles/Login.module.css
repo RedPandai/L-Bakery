@@ -1,0 +1,93 @@
+.container {
+    height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #bc7715;
+  }
+  
+  .loginWrapper{
+    position:relative;
+    background-color: antiquewhite;
+    padding:2rem;
+    border-radius: 10px;;
+  }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input {
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 0px 10px;
+  }
+  
+  .button {
+    height: 40px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: #6D3200;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .button:hover{
+    background-color: rgb(246, 176, 84);
+  }
+  
+  .error {
+    font-size: 13px;
+    color: red;
+  }
+
+  .catWrapper{
+    position:absolute;
+    height:50px;
+    width:100px;
+    background-color: #ffd386;
+    top:-30px;
+    border-radius:70%  70%  50%  50%  / 90%   90%   50%  50%;
+    animation:bake 2s ease-in-out;
+
+  }
+  .catPaw{
+    height:23px;
+    width:10px;
+    background-color: rgb(103, 40, 8);
+    position:absolute;
+    border-radius: 90% 50% 70% 50%;;
+    top:2px
+  }
+
+  .catPaw:first-child{
+    left:10px;
+    transform: rotate(-25deg);
+    top:12px;
+  }
+  .catPaw:nth-child(2){
+    left:40px;
+  }
+  .catPaw:nth-child(3){
+    left:70px;
+    top:5px;
+    transform: rotate(10deg);
+  }
+  .round{
+    position:absolute;
+    background-color: #fcfbfb;
+    height:40px;
+    width:35px;
+    border-radius:70%  70%  50%  50%  / 90%   90%   50%  50%;
+    left:24px;
+    top:20px
+  }
+
+  @keyframes bake {
+    from{
+        transform: translateX(-100px);
+    }to{
+
+    }
+  }

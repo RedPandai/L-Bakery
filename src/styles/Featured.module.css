@@ -1,0 +1,63 @@
+.container{
+    height:calc(100vh - 100px);
+    background-color: #44302a;
+    overflow: hidden;
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.arrowContainer{
+    position: absolute;
+    width:10%;
+    height:20%;
+    top:0;
+    bottom: 0;
+    margin:auto;
+    cursor: pointer;
+    z-index:2;
+}
+
+
+.dotContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index:20;
+}
+.dots{
+    margin: 0 5px;
+    font-size:2rem;
+    cursor: pointer;
+    user-select: none;
+    color:rgb(241, 245, 237);
+}
+.dotsActive{
+    font-size:2rem;
+    margin: 0 5px;
+    color:rgb(165, 175, 162);
+    cursor: pointer;
+    user-select: none;
+}
+
+.imgContainer {
+    opacity: 1;
+    transition:1.5s opacity ease-in-out;
+    width:100vw;
+    height:100%;
+    cursor: pointer;
+}
+
+.imgContainerActive{
+    opacity:0;
+    transition-duration:1s;
+    z-index:1;
+}
+
+@media screen and (max-width:700px) {
+    .container{
+        height:50vh;
+    }
+}

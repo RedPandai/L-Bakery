@@ -1,0 +1,173 @@
+.mainAddButton {
+    padding: 10px;
+    margin: 20px;
+    background-color: #e44a28;
+    width: 150px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(245, 240, 240, 0.52);
+    position: fixed;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .wrapper {
+    width: 500px;
+    background-color: white;
+    padding: 30px 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .close {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(210, 64, 31);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+  }
+  .close:hover{
+    background-color:rgb(255, 174, 93);
+  }
+  
+  .item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold
+  }
+  .textarea{
+    resize:none;
+  }
+  
+  .input {
+    border: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+  }
+  
+  .priceContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .inputSm {
+    width: 25%;
+  }
+  
+  .extra {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .extraItems {
+    margin: 10px 0px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .extraItem {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid tomato;
+    background-color: white;
+    color: tomato;
+    margin-right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  .extraButton{
+    background-color: #f9debb;
+    border:none;
+    border-radius: 10px;
+    padding:5px 10px;
+    cursor: pointer;
+  }
+  .extraButton:hover{
+    background-color: #f5be8f;
+  }
+  .addButton {
+    width: 25%;
+    border: none;
+    background-color:#6D3200;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px 0;
+    align-self: flex-end;
+  }
+  .addButton:hover{
+    background-color: rgb(255, 174, 93);
+  }
+
+  .err{
+    margin-top:10px;
+    color:red;
+  }
+
+  .loader{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color: #f5be8f;
+    z-index:40;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    font-weight:bold;
+    font-size:1.5rem;
+    text-align: center;
+  }
+  .loader::after{
+    content:'';
+    width:50px;
+    height:50px;
+    background-color: #e44a28;
+    animation: loader infinite 1s ease-in-out alternate;
+  }
+  @keyframes loader {
+    from{
+      transform: translateX(-50px) scale(0.5);
+      border-radius: 60%;
+    }to{
+      transform: translateX(50px) scale(1);
+      border-radius: 30%;
+    }
+  }
+@media screen and (max-width:560px) {
+    .close{
+        right:50px;
+    }
+}

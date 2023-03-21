@@ -1,0 +1,60 @@
+.container{
+    background-color: #222;
+    height: calc(100vh - 100px);
+    display:flex;
+}
+
+.item{
+    flex:2;
+    position:relative;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap:2rem;
+}
+
+.item:last-child{
+    flex:1;
+    padding:50px;
+    justify-content: space-between;
+}
+.card{
+    flex:1;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.title{
+    font-size:18px;
+    color:white;
+}
+
+.text{
+    color:lightgray;
+}
+
+.motto{
+    color:rgb(252, 230, 196);
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width:500px) {
+    .container{
+        height:auto;
+    }
+    .item:first-child{
+        display:none;
+    }
+    .item{
+        flex-direction: column;
+    }
+    .title{
+        font-size:30px;
+    }
+    .text{
+        font-size:20px;
+    }
+}

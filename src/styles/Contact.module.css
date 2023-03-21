@@ -1,0 +1,48 @@
+.container{
+    background-color:rgb(250, 227, 178);
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:20px;
+}
+.desc{
+    padding:20px;
+    margin:10px;
+}
+.owner{
+    flex:1;
+}
+.wrapper{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.form{
+    display:flex;
+    flex-direction: column;
+    padding:10px;
+    gap:10px;
+    margin-left: 20PX;
+}
+.label{
+    font-weight: 700;
+}
+
+.input,.textarea{
+    resize:none;
+    padding:10px;
+    padding:10px;
+    border:1px solid #AAA;
+    border-radius: 10PX;
+}
+.button{
+    background-color: rgb(143, 75, 7);
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.button:hover{
+    background-color: rgb(181, 90, 10);
+}
