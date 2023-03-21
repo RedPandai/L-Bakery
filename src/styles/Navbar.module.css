@@ -6,18 +6,12 @@
 }
 
 .item{
-    flex:1;
+    flex:3;
     display:flex;
     align-items: center;
+    justify-content: space-between;
 }
 
-.item:first-child{
-    flex:3;
-}
-
-.item:last-child{
-    justify-content: flex-end;
-}
 
 .texts{
     margin-left:20px;

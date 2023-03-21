@@ -31,9 +31,15 @@
 .input,.textarea{
     resize:none;
     padding:10px;
-    padding:10px;
     border:1px solid #AAA;
     border-radius: 10PX;
+    outline:none;
+    min-width:260px;
+    /* without this the input box will scale while inputing */
+}
+.error{
+    color:red;
+
 }
 .button{
     background-color: rgb(143, 75, 7);
@@ -46,3 +52,48 @@
 .button:hover{
     background-color: rgb(181, 90, 10);
 }
+.button:disabled{
+    background-color: #AAA;
+}
+.loader{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color: #f5be8f;
+    z-index:40;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    font-weight:bold;
+    font-size:1.5rem;
+    text-align: center;
+  }
+  .loader::after{
+    content:'';
+    width:50px;
+    height:50px;
+    background-color: chocolate;
+    animation: loader infinite 1s ease-in-out alternate;
+  }
+
+  @keyframes loader {
+    from{
+      transform: translateX(-50px) scale(0.5);
+      border-radius: 60%;
+    }to{
+      transform: translateX(50px) scale(1);
+      border-radius: 30%;
+    }
+  }
+
+
+  @media screen and (max-width:450px) {
+    .wrapper{
+        flex-direction: column;
+    }
+  }
+  

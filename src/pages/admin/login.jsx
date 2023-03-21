@@ -9,10 +9,10 @@ const Login = () => {
   const [error, setError] = useState(false);
   const router = useRouter();
 
-  useEffect(()=>{
-    const timer = setTimeout(()=>setError(false),2000)
-    return ()=>clearTimeout(timer);
-  },[error]);
+  useEffect(() => {
+    const timer = setTimeout(() => setError(false), 2000);
+    return () => clearTimeout(timer);
+  }, [error]);
 
   const handleClick = async () => {
     try {
@@ -51,6 +51,21 @@ const Login = () => {
           <div className={styles.catPaw}></div>
           <div className={styles.catPaw}></div>
           <div className={styles.catPaw}></div>
+          <div className={styles.vapour}>
+            <span className={styles.i}></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
     </div>

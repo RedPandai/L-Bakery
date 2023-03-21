@@ -34,7 +34,6 @@ const Add = ({ setClose }) => {
   const handleExtra = () => {
     if(!extra) {
         setErr(true)
-        setTimeout(()=>setErr(false),2000)
         return
     };
     setExtraOptions((prev) => [...prev, extra]);
@@ -43,6 +42,7 @@ const Add = ({ setClose }) => {
   const handleCreate = async () => {
     setPending(true)
     const data = new FormData();
+    //to handle file upload then use this FormData
     data.append("file", file);
     data.append("upload_preset", "uploads");
     console.log(data)

@@ -91,3 +91,54 @@
 
     }
   }
+  .vapour{
+    position:relative;
+    display: flex;
+    z-index:1;
+    padding: 0 20px;
+  }
+  
+  .vapour span{
+    position:relative;
+    right:20px;
+    display:block;
+    bottom:40px; 
+    margin: 0 2px 50px;
+    min-width: 5px;
+    height:60px;
+    background-color: #fcfbfb;
+    border-radius: 50%;
+    animation: steam 5s linear infinite;
+    opacity:0;
+    filter:blur(6px); 
+  }
+  .vapour span::nth-child(4n+3){
+    animation-delay: -2;
+  } 
+  .vapour span::nth-child(4n){
+    animation-delay: -1s;
+  }
+  .vapour span::nth-child(4n+1){
+    animation-delay: -0.5s;
+  } 
+  .vapour span::nth-child(4n+2){
+    animation-delay: -1.5s;
+  } 
+  @keyframes steam {
+    0%{
+      transform: translateY(0) scaleX(1) rotate(-6deg);
+      opacity:0;
+    }
+    15%{
+      opacity: 1;
+    }
+    50%{
+      transform: translateY(-20px) scaleX(3) rotate(5deg);
+    }
+    95%{
+      opacity:0;
+    }
+    100%{
+      transform: translateY(-50px) scaleX(5) rotate(0);
+    }
+  }
