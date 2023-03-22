@@ -2,6 +2,7 @@ import Image from "next/legacy/image";
 import styles from "../styles/Contact.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import server from "util/server";
 import validateForm from "@/utili/validateForm";
 
 const contact = () => {
@@ -14,7 +15,7 @@ const contact = () => {
   const createContact = async (data) => {
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3000/api/contacts", data);
+      const res = await axios.post(`${server}/api/contacts`, data);
       console.log("success send message");
       if (res.status === 201) {
         setNotification(true);

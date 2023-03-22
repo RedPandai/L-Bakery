@@ -5,6 +5,7 @@ import ProductList from "@/component/ProductList";
 import Add from "@/component/Add";
 import AddButton from "@/component/AddButton";
 import axios from "axios";
+import server from "util/server";
 import dbConnect from "util/mongo";
 
 export default function Home({ productList, admin }) {
@@ -35,7 +36,7 @@ export const getServerSideProps = async (ctx) => {
   }
   await dbConnect();
   //await dbconnect can solve the 500 error
-  const res = await axios.get("http://localhost:3000/api/products");
+  const res = await axios.get(`${server}/api/products`);
   return {
     props: {
       productList: res.data,

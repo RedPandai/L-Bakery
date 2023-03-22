@@ -1,4 +1,5 @@
 import { useState,useEffect } from "react";
+import server from "util/server";
 import styles from "../styles/Add.module.css";
 import axios from "axios";
 
@@ -60,7 +61,7 @@ const Add = ({ setClose }) => {
         img: url,
       };
 
-      await axios.post("http://localhost:3000/api/products", newProduct);
+      await axios.post(`${server}/api/products`, newProduct);
       setPending(false)
       setClose(true);
     } catch (err) {

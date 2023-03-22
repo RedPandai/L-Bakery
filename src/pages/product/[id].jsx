@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "redux/cartSlice";
 import { addAnimation,resetAdd } from "redux/addtoCart";
+import server from "util/server";
 
 import axios from "axios";
 import Image from "next/legacy/image";
@@ -144,7 +145,7 @@ export default ProductItem;
 
 export const getServerSideProps = async ({ params }) => {
   const res = await axios.get(
-    `http://localhost:3000/api/products/${params.id}`
+    `${server}/api/products/${params.id}`
   );
   return {
     props: {

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import server from "util/server";
 import styles from "../../styles/Login.module.css";
 
 const Login = () => {
@@ -16,7 +17,7 @@ const Login = () => {
 
   const handleClick = async () => {
     try {
-      await axios.post("http://localhost:3000/api/login", {
+      await axios.post(`${server}/api/login`, {
         username,
         password,
       });

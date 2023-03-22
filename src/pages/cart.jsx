@@ -7,6 +7,7 @@ import {
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
 import { reset } from "redux/cartSlice";
+import server from "util/server";
 import axios from "axios";
 import Image from "next/legacy/image";
 import styles from "../styles/Cart.module.css";
@@ -24,7 +25,7 @@ const cart = () => {
 
   const createOrder = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/orders", data);
+      const res = await axios.post(`${server}/api/orders`, data);
       if (res.status === 201) {
         dispatch(reset());
         router.push(`/orders/${res.data._id}`);

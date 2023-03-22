@@ -1,5 +1,5 @@
-import React from "react";
 import axios from "axios";
+import server from "util/server";
 import Image from "next/legacy/image";
 import styles from "../../styles/Order.module.css";
 
@@ -119,7 +119,7 @@ const Order = ({order}) => {
 export default Order;
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+  const res = await axios.get(`${server}/api/orders/${params.id}`);
   return {
     props: { order: res.data },
   };
