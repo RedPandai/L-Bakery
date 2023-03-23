@@ -4,6 +4,7 @@ import styles from "../styles/Add.module.css";
 import axios from "axios";
 
 const Add = ({ setClose }) => {
+  const CLOURDINARY_URL = process.env.CLOURDINARY_URL
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
@@ -49,7 +50,7 @@ const Add = ({ setClose }) => {
     console.log(data)
     try {
       const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dkxitsfyo/image/upload",
+        `https://api.cloudinary.com/v1_1/${CLOURDINARY_URL}/image/upload`,
         data
       );
       const { url } = uploadRes.data;

@@ -14,6 +14,7 @@ import styles from "../styles/Cart.module.css";
 import OrderDetail from "@/component/OrderDetail";
 
 const cart = () => {
+  console.log(process.env.NODE_ENV)
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);

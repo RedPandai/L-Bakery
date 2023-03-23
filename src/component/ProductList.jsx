@@ -15,7 +15,7 @@ const ProductList = ({productList}) => {
         Quo, maiores.
       </p>
       <div className={styles.wrapper}>
-        {productList.map(product=>(
+        {productList && productList.map(product=>(
           <ProductCard key={product._id} product={product}/>
         ))} 
       </div>
