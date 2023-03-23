@@ -2,42 +2,34 @@ import { useState,useEffect } from "react";
 import server from "util/server";
 import styles from "../styles/Add.module.css";
 import axios from "axios";
+import addFormValidation from "@/utili/addFormValidation";
 
 const Add = ({ setClose }) => {
-  const CLOURDINARY_URL = process.env.CLOURDINARY_URL
-  const [file, setFile] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [desc, setDesc] = useState(null);
+ 
+  const [file, setFile] = useState('');
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
   const [prices, setPrices] = useState([]);
+  const [pricesInput, setPricesInput] = useState('')
   const [extraOptions, setExtraOptions] = useState([]);
-  const [extra, setExtra] = useState(null);
-  const [err,setErr] = useState(false)
+  const [extra, setExtra] = useState('');
   const [pending, setPending] = useState(false);
-
+  const { errors, isValid } = addFormValidation({title, file, pricesInput, desc,extra})
 
   const changePrice = (e, index) => {
+
     const currentPrices = prices;
-    currentPrices[index] = e.target.value;
+    currentPrices[index] = pricesInput; 
+    setPricesInput(e.target.value)
     setPrices(currentPrices);
   };
 
-  useEffect(()=>{
-    const timer = setTimeout(()=>setErr(false),2000)
-    return ()=>clearTimeout(timer);
-  },[err]);
 
   const handleExtraInput = (e) => {
-    if(!e.target.value) {
-        setErr(true)
-    };
     setExtra({ ...extra, [e.target.name]: e.target.value });
   };
 
   const handleExtra = () => {
-    if(!extra) {
-        setErr(true)
-        return
-    };
     setExtraOptions((prev) => [...prev, extra]);
   };
 
@@ -50,7 +42,7 @@ const Add = ({ setClose }) => {
     console.log(data)
     try {
       const uploadRes = await axios.post(
-        `https://api.cloudinary.com/v1_1/${CLOURDINARY_URL}/image/upload`,
+        `https://api.cloudinary.com/v1_1/dkxitsfyo/image/upload`,
         data
       );
       const { url } = uploadRes.data;
@@ -81,6 +73,7 @@ const Add = ({ setClose }) => {
         <div className={styles.item}>
           <label className={styles.label}>Choose an image</label>
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+          <div className={styles.error}> {title && errors.file}</div>
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Title</label>
@@ -90,6 +83,7 @@ const Add = ({ setClose }) => {
             onChange={(e) => setTitle(e.target.value)}
             required
           />
+          <div className={styles.error}> {title && errors.title}</div>
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Desc (no more than 20 words)</label>
@@ -100,6 +94,7 @@ const Add = ({ setClose }) => {
             className={styles.textarea}
             required
           />
+          <div className={styles.error}> {desc && errors.desc}</div>
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Prices</label>
@@ -110,23 +105,32 @@ const Add = ({ setClose }) => {
               placeholder="Small"
               onChange={(e) => changePrice(e, 0)}
               required
+              max={100}
+              min={0.5}
             />
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Medium"
               onChange={(e) => changePrice(e, 1)}
+              required
+              max={100}
+              min={0.5}
             />
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
               placeholder="Large"
               onChange={(e) => changePrice(e, 2)}
+              max={100}
+              min={0.5}
             />
           </div>
+          <div className={styles.error}> {prices && errors.prices}</div>
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Extra</label>
+          <div className={styles.error}> {extra && errors.extra}</div>
           <div className={styles.extra}>
             <input
               className={`${styles.input} ${styles.inputSm}`}
@@ -141,12 +145,13 @@ const Add = ({ setClose }) => {
               placeholder="Price"
               name="price"
               onChange={handleExtraInput}
+              max={10}
+              min={0.5}
             />
-            <button className={styles.extraButton} onClick={handleExtra}>
+            <button className={styles.extraButton} onClick={handleExtra} disabled={errors.extra}>
               Add Extra
             </button>
           </div>
-          {err && <span className={styles.err}>Please Input Valid Extra!</span>}
           <div className={styles.extraItems}>
             {extraOptions.map((option) => (
               <span key={option.text} className={styles.extraItem}>
@@ -155,7 +160,7 @@ const Add = ({ setClose }) => {
             ))}
           </div>
         </div>
-        <button className={styles.addButton} onClick={handleCreate}>
+        <button className={styles.addButton} onClick={handleCreate} disabled={!isValid}>
           Create
         </button>
         {pending && <div className={styles.loader}>Uploading the product informaton, please do not close your window or refresh the page.</div>}

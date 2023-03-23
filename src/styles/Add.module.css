@@ -127,8 +127,12 @@
   .addButton:hover{
     background-color: rgb(255, 174, 93);
   }
+  .extraButton:disabled,
+  .addButton:disabled{
+    background-color: #AAA;
+  }
 
-  .err{
+  .error{
     margin-top:10px;
     color:red;
   }

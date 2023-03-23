@@ -100,7 +100,7 @@ const contact = () => {
           <button
             className={styles.button}
             onClick={handleSubmit}
-            disabled={!validateForm({ name, email, message }).isValid}
+            disabled={!isValid}
           >
             Submit
           </button>
