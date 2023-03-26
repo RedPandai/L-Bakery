@@ -46,6 +46,7 @@ const Add = ({ setClose }) => {
         data
       );
       const { url } = uploadRes.data;
+      console.log(url)
       const newProduct = {
         title,
         desc,
@@ -53,7 +54,7 @@ const Add = ({ setClose }) => {
         extraOptions,
         img: url,
       };
-
+      console.log(newProduct)
       await axios.post(`${server}/api/products`, newProduct);
       setPending(false)
       setClose(true);
