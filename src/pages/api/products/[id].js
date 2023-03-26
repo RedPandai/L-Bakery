@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   }
   if (method === "PUT") {
     if (!token || token !== process.env.token) {
-      return res.status(401).json("Not Authenticated!");
+      return res.status(401).json("Not Authenticated to put!");
     }
     try {
       const product = await Product.create(req.body);
@@ -31,8 +31,10 @@ export default async function handler(req, res) {
     }
   }
   if (method === "DELETE") {
+    console.log("has no token:" + !token);
+    console.log("token is not equal:" + token !== process.env.token);
     if (!token || token !== process.env.token) {
-      return res.status(401).json("Not Authenticated!");
+      return res.status(401).json("Not Authenticated to delete!");
     }
     try {
       await Product.findByIdAndDelete(id);

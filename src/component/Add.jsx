@@ -55,6 +55,7 @@ const Add = ({ setClose }) => {
         img: url,
       };
       console.log(newProduct)
+      //bugs are from below, it seems it has not authentic
       await axios.post(`${server}/api/products`, newProduct);
       setPending(false)
       setClose(true);
