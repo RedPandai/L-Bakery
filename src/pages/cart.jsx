@@ -24,6 +24,11 @@ const cart = () => {
   const style = { layout: "vertical" };
   const router = useRouter();
 
+  //handle close button on the cash on delivery modal
+  const handleModal = ()=>{
+      setCash(!cash)
+  }
+  
   const createOrder = async (data) => {
     try {
       const res = await axios.post(`${server}/api/orders`, data);
@@ -183,7 +188,7 @@ const cart = () => {
           )}
         </div>
       </div>
-      {cash && <OrderDetail total={cart.total} createOrder={createOrder}/>}
+      {cash && <OrderDetail total={cart.total} createOrder={createOrder} handleModal={handleModal}/>}
     </div>
   );
 };

@@ -10,7 +10,6 @@ const Index = ({ orders, products }) => {
   const status = ["preparing", "on the way", "delivered"];
 
   const handleDelete = async (id) => {
-    console.log(id);
     try {
       const res = await axios.delete(
         `${server}/api/products/` + id

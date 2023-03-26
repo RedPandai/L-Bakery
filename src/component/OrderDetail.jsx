@@ -1,19 +1,24 @@
 import { useState } from "react";
+import deliveryForm from "@/utili/deliveryForm";
 import styles from "../styles/OrderDetail.module.css";
 
-const OrderDetail = ({ total, createOrder }) => {
+const OrderDetail = ({ total, createOrder, handleModal }) => {
   const [customer, setCustomer] = useState("");
   const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const { errors, isValid } = deliveryForm({ customer, phone, address });
 
   const handleClick = (e) => {
-    e.preventDefault();
-    createOrder({ customer, address, total, method: 0 });
+    isValid && createOrder({ customer, address, total, method: 0 });
     //cash method is 0, paypal is 1
   };
 
   return (
     <div className={styles.container}>
       <form className={styles.wrapper}>
+        <button className={styles.close} onClick={handleModal}>
+          X
+        </button>
         <h1 className={styles.title}>You will pay £6 for delivery</h1>
         <div className={styles.item}>
           <label className={styles.label}>Name</label>
@@ -24,6 +29,7 @@ const OrderDetail = ({ total, createOrder }) => {
             onChange={(e) => setCustomer(e.target.value)}
             required
           />
+          <div className={styles.error}> {customer && errors.customer}</div>
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Phone Number</label>
@@ -31,8 +37,9 @@ const OrderDetail = ({ total, createOrder }) => {
             type="text"
             placeholder="Your Phone Number Here"
             className={styles.input}
-            required
+            onChange={(e) => setPhone(e.target.value)}
           />
+          <div className={styles.error}> {phone && errors.phone}</div>
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Address</label>
@@ -44,8 +51,13 @@ const OrderDetail = ({ total, createOrder }) => {
             onChange={(e) => setAddress(e.target.value)}
             required
           />
+          <div className={styles.error}> {address && errors.address}</div>
         </div>
-        <button className={styles.button} onClick={handleClick} type='submit'>
+        <button
+          className={styles.button}
+          onClick={handleClick}
+          disabled={!isValid}
+        >
           Order
         </button>
       </form>
