@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import {
   PayPalScriptProvider,
@@ -14,7 +14,7 @@ import styles from "../styles/Cart.module.css";
 import OrderDetail from "@/component/OrderDetail";
 
 const cart = () => {
-  console.log(process.env.NODE_ENV)
+  // console.log(process.env.NODE_ENV)
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -37,7 +37,7 @@ const cart = () => {
         router.push(`/orders/${res.data._id}`);
       }
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err);
     }
   };
 
@@ -188,7 +188,7 @@ const cart = () => {
           )}
         </div>
       </div>
-      {cash && <OrderDetail total={cart.total} createOrder={createOrder} handleModal={handleModal}/>}
+      {cash && <OrderDetail total={cart.total} handleModal={handleModal} createOrder={createOrder} />}
     </div>
   );
 };

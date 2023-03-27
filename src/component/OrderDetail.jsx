@@ -9,13 +9,14 @@ const OrderDetail = ({ total, createOrder, handleModal }) => {
   const { errors, isValid } = deliveryForm({ customer, phone, address });
 
   const handleClick = (e) => {
+    // e.preventDefault();
     isValid && createOrder({ customer, address, total, method: 0 });
     //cash method is 0, paypal is 1
   };
 
   return (
     <div className={styles.container}>
-      <form className={styles.wrapper}>
+      <div className={styles.wrapper}>
         <button className={styles.close} onClick={handleModal}>
           X
         </button>
@@ -27,7 +28,6 @@ const OrderDetail = ({ total, createOrder, handleModal }) => {
             type="text"
             className={styles.input}
             onChange={(e) => setCustomer(e.target.value)}
-            required
           />
           <div className={styles.error}> {customer && errors.customer}</div>
         </div>
@@ -60,7 +60,7 @@ const OrderDetail = ({ total, createOrder, handleModal }) => {
         >
           Order
         </button>
-      </form>
+      </div>
     </div>
   );
 };
