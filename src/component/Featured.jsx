@@ -1,13 +1,13 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import Image from "next/legacy/image";
 import styles from "../styles/Featured.module.css";
 
 const images = [
-  "/img/Featured1.png",
-  "/img/Featured2.png",
-  "/img/Featured3.png",
+  {path:"/img/Featured1.png",id:'6419d009dba1f48d1449913f'},
+  {path:"/img/Featured2.png",id:'6419d08cdba1f48d14499148'},
+  {path:"/img/Featured3.png",id:'6419cb8adba1f48d144990c0'},
 ];
-
 
 const Featured = () => {
   const [currentImage, setCurrtentImage] = useState(0);
@@ -48,14 +48,16 @@ const Featured = () => {
           }
           key={index}
         >
-          <Image
-            src={`${image}`}
-            alt="featuredimages"
-            objectFit="contain"
-            layout='fill'
-            placeholder="blur"
-            blurDataURL={`${image}`}
-          />
+          <Link href={`/product/${image.id}`}>
+            <Image
+              src={`${image.path}`}
+              alt="featuredimages"
+              objectFit="contain"
+              layout="fill"
+              placeholder="blur"
+              blurDataURL={`${image.path}`}
+            />
+          </Link>
         </div>
       ))}
 

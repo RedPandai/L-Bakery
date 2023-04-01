@@ -52,6 +52,7 @@
 
 .imgContainerActive{
     opacity:0;
+    visibility: hidden;
     transition-duration:1s;
     z-index:1;
 }
