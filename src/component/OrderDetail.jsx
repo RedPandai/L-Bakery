@@ -22,8 +22,11 @@ const OrderDetail = ({ total, createOrder, handleModal }) => {
         </button>
         <h1 className={styles.title}>You will pay £6 for delivery</h1>
         <div className={styles.item}>
-          <label className={styles.label}>Name</label>
+          <label className={styles.label} htmlFor="name">
+            Name
+          </label>
           <input
+            id="name"
             placeholder="Your Name Here"
             type="text"
             className={styles.input}
@@ -32,8 +35,11 @@ const OrderDetail = ({ total, createOrder, handleModal }) => {
           <div className={styles.error}> {customer && errors.customer}</div>
         </div>
         <div className={styles.item}>
-          <label className={styles.label}>Phone Number</label>
+          <label className={styles.label} htmlFor="phone">
+            Phone Number
+          </label>
           <input
+            id="phone"
             type="text"
             placeholder="Your Phone Number Here"
             className={styles.input}
@@ -42,8 +48,11 @@ const OrderDetail = ({ total, createOrder, handleModal }) => {
           <div className={styles.error}> {phone && errors.phone}</div>
         </div>
         <div className={styles.item}>
-          <label className={styles.label}>Address</label>
+          <label className={styles.label} htmlFor="address">
+            Address
+          </label>
           <textarea
+            id="address"
             rows={5}
             placeholder="Your Address Here"
             type="text"

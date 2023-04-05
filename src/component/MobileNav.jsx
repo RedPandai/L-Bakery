@@ -27,16 +27,15 @@ const MobileNav = () => {
               <span className={styles.text}>Home</span>
             </li>
           </Link>
-          <Link className={styles.link} href="booking">
-            <li className={styles.li} onClick={closeMobileMenu}>
-              <span className={styles.text}>Booking</span>
-            </li>
-          </Link>
-          <Link className={styles.link} href="/menu">
-            <li className={styles.li} onClick={closeMobileMenu}>
-              <span className={styles.text}>Menu</span>
-            </li>
-          </Link>
+
+          <li className={styles.li} onClick={closeMobileMenu}>
+            <span className={styles.text}>Booking</span>
+          </li>
+
+          <li className={styles.li} onClick={closeMobileMenu}>
+            <span className={styles.text}>Menu</span>
+          </li>
+
           <Link className={styles.link} href="/contact">
             <li className={styles.li} onClick={closeMobileMenu}>
               <span className={styles.text}>Contact</span>
