@@ -28,7 +28,6 @@ const PaypalCheckoutButton = ({ amount }) => {
       <>
         {showSpinner && isPending && <div className="spinner" />}
         <PayPalButtons
-          onButtonReady={() => console.log("loaded")}
           style={style}
           disabled={false}
           forceReRender={[amount, currency, style]}

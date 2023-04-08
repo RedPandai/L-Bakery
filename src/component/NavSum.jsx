@@ -6,8 +6,8 @@ import MobileNav from "./MobileNav";
 import Navbar from "./Navbar";
 
 const NavSum = () => {
-  const quantity = useSelector((state) =>state.cart.totalQuan);
-  const animation = useSelector((state)=>state.addtoCart.added)
+  const quantity = useSelector((state) => state.cart.quantity);
+  const animation = useSelector((state) => state.addtoCart.added);
 
   return (
     <div className={styles.container}>
@@ -47,8 +47,8 @@ const NavSum = () => {
               src="/img/cart.svg"
               alt="logo"
               height="30"
-              width='30'
-              objectFit= "cover"
+              width="30"
+              objectFit="cover"
               className={animation ? styles.animation : styles.static}
             />
           </div>

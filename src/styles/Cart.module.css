@@ -79,7 +79,7 @@
   border-radius: 5px;
 }
 .editbutton:hover {
-  background-color: #6d3200;
+  background-color: #ff2f18;
 }
 .paymentMethods {
   margin-top: 10px;
@@ -138,10 +138,14 @@
 
   .extras,
   .price,
-  .quantity {
+  .quantity,
+  .size {
     font-size: 18px;
   }
-
+  .size::before {
+    content: "Size: ";
+    font-weight: 500;
+  }
   .price::before {
     content: "Price: ";
     font-weight: 500;

@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { reset } from "redux/cartSlice";
-import { nanoid } from "nanoid";
+import { deleteProduct } from "redux/cartSlice";
 import server from "util/server";
 import axios from "axios";
 import Image from "next/legacy/image";
 import styles from "../styles/Cart.module.css";
 import OrderDetail from "@/component/OrderDetail";
 import PaypalCheckoutButton from "@/component/PaypalCheckoutButton";
-import { Carter_One } from "@next/font/google";
 
 const cart = () => {
   // console.log(process.env.NODE_ENV)
@@ -20,7 +19,7 @@ const cart = () => {
   const amount = cart.total;
   const router = useRouter();
 
-  // console.log(cart.total, cart.totalQuan);
+  // console.log(cart.total);
   //handle close button on the cash on delivery modal
   const handleModal = () => {
     setCash(!cash);
@@ -28,7 +27,9 @@ const cart = () => {
   const handleOpen = () => {
     setOpen(true);
   };
-
+  const handleDelete = (product) => {
+    dispatch(deleteProduct(product));
+  };
   useEffect(() => {
     if (cash) {
       document.body.style.overflow = "hidden";
@@ -55,16 +56,25 @@ const cart = () => {
         <table className={styles.table}>
           <tbody className={styles.tbody}>
             <tr className={styles.trTitle}>
+              <th></th>
               <th>Product</th>
               <th>Name</th>
               <th>Extras</th>
+              <th>Size</th>
               <th>Price</th>
               <th>Quantity</th>
               <th>Total</th>
             </tr>
             {cart.products.map((product, index) => (
               <tr className={styles.tr} key={index}>
-                {console.log(index)}
+                <td>
+                  <button
+                    className={styles.editbutton}
+                    onClick={() => handleDelete(product)}
+                  >
+                    Delete
+                  </button>
+                </td>
                 <td className={styles.td}>
                   <div className={styles.imgContainer}>
                     <Image
@@ -84,6 +94,9 @@ const cart = () => {
                       <span key={extra._id}>{extra.text},</span>
                     ))}
                   </span>
+                </td>
+                <td className={styles.td}>
+                  <span className={styles.size}>{product.sizeName}</span>
                 </td>
                 <td className={styles.td}>
                   <span className={styles.price}>£{product.price}</span>
@@ -106,7 +119,7 @@ const cart = () => {
           <h2 className={styles.title}>CART SUMMARY</h2>
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>Subtotal:</b>
-            {cart.totalQuan}
+            {cart.quantity}
           </div>
           <div className={styles.totalText}>
             <b className={styles.totalTextTitle}>Discount:</b>£0.00

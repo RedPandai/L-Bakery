@@ -1,0 +1,35 @@
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f9c38d;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.loader::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  background-color: rgb(233, 154, 97);
+  animation: loader infinite 1s ease-in-out alternate;
+}
+
+@keyframes loader {
+  from {
+    transform: translateX(-50px) scale(0.5);
+    border-radius: 60%;
+  }
+  to {
+    transform: translateX(50px) scale(1);
+    border-radius: 30%;
+  }
+}

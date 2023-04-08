@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "redux/cartSlice";
-import { addAnimation,resetAdd } from "redux/addtoCart";
+import { addAnimation, resetAdd } from "redux/addtoCart";
 import server from "util/server";
 
 import axios from "axios";
@@ -9,8 +9,10 @@ import Image from "next/legacy/image";
 import styles from "../../styles/ProductItem.module.css";
 
 const ProductItem = ({ product }) => {
+  const [title, setTitle] = useState(product.title);
   const [price, setPrice] = useState(product.prices[0]);
   const [size, setSize] = useState(0);
+  const [sizeName, setSizeName] = useState("Small");
   const [quantity, setQuantity] = useState(1);
   const [extras, setExtras] = useState([]);
 
@@ -24,7 +26,9 @@ const ProductItem = ({ product }) => {
     setSize(sizeIndex);
     changePrice(difference);
   };
-
+  const handleSizeName = (e) => {
+    setSizeName(e.target.value);
+  };
   const handleChange = (e, option) => {
     const checked = e.target.checked;
     if (checked) {
@@ -46,12 +50,14 @@ const ProductItem = ({ product }) => {
   //add to cart animation
 
   const handleClick = () => {
-    dispatch(addProduct({ ...product, extras, price, quantity }));
+    dispatch(
+      addProduct({ ...product, title, extras, price, quantity, sizeName })
+    );
     //add to cart animation, 1.product.img, 2.cart logo shaking
     dispatch(addAnimation());
-    setTimeout(()=>{
-      dispatch(resetAdd())
-    },500)   
+    setTimeout(() => {
+      dispatch(resetAdd());
+    }, 500);
   };
 
   return (
@@ -67,7 +73,7 @@ const ProductItem = ({ product }) => {
         </div>
       </div>
       <div className={styles.right}>
-        <h1 className={styles.title}>{product.name}</h1>
+        <h1 className={styles.title}>{product.title}</h1>
         <span className={styles.price}>£{price}</span>
         <p className={styles.desc}>Ingredient: {product.desc}</p>
         <h3 className={styles.choose}>Choose the size</h3>
@@ -75,9 +81,10 @@ const ProductItem = ({ product }) => {
           <input
             className={styles.input}
             onClick={() => handleSize(0)}
+            onChange={handleSizeName}
             id="radio-1"
             name="size"
-            value="small"
+            value="Small"
             type="radio"
           />
           <label className={styles.number} htmlFor="radio-1">
@@ -87,9 +94,10 @@ const ProductItem = ({ product }) => {
           <input
             className={styles.input}
             onClick={() => handleSize(1)}
+            onChange={handleSizeName}
             id="radio-2"
             name="size"
-            value="medium"
+            value="Medium"
             type="radio"
           />
           <label className={styles.number} htmlFor="radio-2">
@@ -99,9 +107,10 @@ const ProductItem = ({ product }) => {
           <input
             className={styles.input}
             onClick={() => handleSize(2)}
+            onChange={handleSizeName}
             id="radio-3"
             name="size"
-            value="large"
+            value="Large"
             type="radio"
           />
           <label className={styles.number} htmlFor="radio-3">
@@ -144,9 +153,7 @@ const ProductItem = ({ product }) => {
 export default ProductItem;
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(
-    `${server}/api/products/${params.id}`
-  );
+  const res = await axios.get(`${server}/api/products/${params.id}`);
   return {
     props: {
       product: res.data,
