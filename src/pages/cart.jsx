@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { reset } from "redux/cartSlice";
 import { deleteProduct } from "redux/cartSlice";
+import Link from "next/link";
 import server from "util/server";
 import axios from "axios";
 import Image from "next/legacy/image";
@@ -77,12 +78,14 @@ const cart = () => {
                 </td>
                 <td className={styles.td}>
                   <div className={styles.imgContainer}>
-                    <Image
-                      src={product.img}
-                      layout="fill"
-                      objectFit="contain"
-                      alt="product"
-                    />
+                    <Link href={`/product/${product._id}`}>
+                      <Image
+                        src={product.img}
+                        layout="fill"
+                        objectFit="contain"
+                        alt="product"
+                      />
+                    </Link>
                   </div>
                 </td>
                 <td className={styles.td}>
