@@ -31,6 +31,7 @@ const cart = () => {
   const handleDelete = (product) => {
     dispatch(deleteProduct(product));
   };
+  // hide the scroll bar when the modal open
   useEffect(() => {
     if (cash) {
       document.body.style.overflow = "hidden";
